@@ -19,27 +19,27 @@ import com.satish.entity.BookRating;
 
 @Service
 @Transactional
-public class BookServiceImpl implements BookService{
-	
+public class BookServiceImpl implements BookService {
+
 	@Autowired
 	private BookDAO bookDAO;
-	
+
 	@Autowired
 	private BookRatingDAO bookRatingDAO;
 
 	@Autowired
 	private BookInventoryDAO bookInventoryDAO;
-	
+
 	@Override
 	public List<Book> getBooks(String author, String category) {
 		List<Book> mybooks = new ArrayList<Book>();
-		if(author.equals("All Authors") && category.equals("All Categories")) {
+		if (author.equals("All Authors") && category.equals("All Categories")) {
 			mybooks = bookDAO.findAll();
-		}else if(author.equals("All Authors") && !category.equals("All Categories")) {
+		} else if (author.equals("All Authors") && !category.equals("All Categories")) {
 			mybooks = bookDAO.getBooksByCategory(category);
-		}else if(!author.equals("All Authors") && category.equals("All Categories")) {
+		} else if (!author.equals("All Authors") && category.equals("All Categories")) {
 			mybooks = bookDAO.getBooksByAuthor(author);
-		}else {
+		} else {
 			mybooks = bookDAO.getBooksByAuthorAndCategory(author, category);
 		}
 		return mybooks;
@@ -48,33 +48,32 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public BookInfo getBookInfo(Integer bookId) {
 		BookInfo bookInfo = new BookInfo();
-		
-		//1. Book Details
-		Book book = bookDAO.findById(bookId).get(); 
+
+		// 1. Book Details
+		Book book = bookDAO.findById(bookId).get();
 		bookInfo.setBookId(book.getBookId());
 		bookInfo.setBookName(book.getBookName());
 		bookInfo.setAuthor(book.getAuthor());
 		bookInfo.setPublications(book.getPublications());
 		bookInfo.setCategory(book.getCategory());
-		
-		//2. Book Rating Details
+
+		// 2. Book Rating Details
 		BookRating bookRating = bookRatingDAO.findById(bookId).get();
 		bookInfo.setAvgRating(bookRating.getAvgRating());
 		bookInfo.setNumberOfSearches(bookRating.getNumberOfSearches());
-		
-		//3.Book Inventory Details
+
+		// 3.Book Inventory Details
 		BookInventory bookInventory = bookInventoryDAO.findById(bookId).get();
 		bookInfo.setBooksAvailable(bookInventory.getBooksAvailable());
-		
-		
-		//4. Book Price Details
+
+		// 4. Book Price Details
 		RestTemplate bookPriceRest = new RestTemplate();
-		String endpoints = "http://localhost:9000/bookPrice/"+bookId;
+		String endpoints = "http://localhost:9000/bookPrice/" + bookId;
 		BookPriceInfo bpInfo = bookPriceRest.getForObject(endpoints, BookPriceInfo.class);
-		
+
 		bookInfo.setPrice(bpInfo.getPrice());
 		bookInfo.setOffer(bpInfo.getOffer());
-		
+
 		return bookInfo;
 	}
 

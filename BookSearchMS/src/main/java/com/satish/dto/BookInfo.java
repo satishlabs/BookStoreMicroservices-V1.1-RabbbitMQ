@@ -1,18 +1,19 @@
 package com.satish.dto;
 
 public class BookInfo {
-	private Integer bookId;  
-	private String bookName;  
-	private String author;  
-	private String publications;  
-	private String category;  
-	private double price;  
-	private double offer; 
-	private double avgRating;  
-	private int numberOfSearches;               
-	private int booksAvailable; 
-	
-	public BookInfo() {}
+	private Integer bookId;
+	private String bookName;
+	private String author;
+	private String publications;
+	private String category;
+	private double price;
+	private double offer;
+	private double avgRating;
+	private int numberOfSearches;
+	private int booksAvailable;
+
+	public BookInfo() {
+	}
 
 	public BookInfo(Integer bookId, String bookName, String author, String publications, String category, double price,
 			double offer, double avgRating, int numberOfSearches, int booksAvailable) {
@@ -108,5 +109,5 @@ public class BookInfo {
 	public void setBooksAvailable(int booksAvailable) {
 		this.booksAvailable = booksAvailable;
 	}
-	
+
 }

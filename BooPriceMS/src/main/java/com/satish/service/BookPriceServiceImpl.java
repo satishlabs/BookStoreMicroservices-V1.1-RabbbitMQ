@@ -12,16 +12,17 @@ import com.satish.entity.BookPrice;
 
 @Service
 @Transactional
-public class BookPriceServiceImpl implements BookPriceService{
-	
+public class BookPriceServiceImpl implements BookPriceService {
+
 	@Autowired
 	private BookPriceDAO bookPriceDAO;
+
 	@Override
 	public BookPrice getBookPriceById(Integer bookId) {
-		System.out.println("---BookPriceServiceImpl---getBookPriceById()-----"); 
+		System.out.println("---BookPriceServiceImpl---getBookPriceById()-----");
 		BookPrice bookPrice = null;
 		Optional<BookPrice> opt = bookPriceDAO.findById(bookId);
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			bookPrice = opt.get();
 		}
 		return bookPrice;
@@ -29,19 +30,19 @@ public class BookPriceServiceImpl implements BookPriceService{
 
 	@Override
 	public double getOfferedPriceById(Integer bookId) {
-		System.out.println("---BookPriceServiceImpl---getOfferedPriceById()-----"); 
-		
+		System.out.println("---BookPriceServiceImpl---getOfferedPriceById()-----");
+
 		double offerPrice = 0.0;
 		Optional<BookPrice> opt = bookPriceDAO.findById(bookId);
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			BookPrice bookPrice = opt.get();
 			double price = bookPrice.getPrice();
 			double offer = bookPrice.getOffer();
-			
-			if(offer <= 0) {
+
+			if (offer <= 0) {
 				return price;
 			}
-			offerPrice = price-price*offer/100;
+			offerPrice = price - price * offer / 100;
 		}
 		return offerPrice;
 	}

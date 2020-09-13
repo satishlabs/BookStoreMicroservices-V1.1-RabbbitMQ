@@ -12,16 +12,16 @@ import com.satish.service.BookPriceService;
 @CrossOrigin
 @RestController
 public class BookPriceController {
-	
+
 	@Autowired
 	private BookPriceService bookPriceService;
-	
+
 	@GetMapping("/bookPrice/{bookId}")
 	public BookPrice getBookPrice(@PathVariable Integer bookId) {
-		System.out.println("---BookPriceController---getBookPrice()-----"); 
+		System.out.println("---BookPriceController---getBookPrice()-----");
 		return bookPriceService.getBookPriceById(bookId);
 	}
-	
+
 	@GetMapping("/offeredPrice/{bookId}")
 	public double getOfferedPrice(@PathVariable Integer bookId) {
 		System.out.println("---BookPriceController---getOfferedPrice()-----");

@@ -6,19 +6,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="mybookratings",schema = "jlcbooksdb") 
+@Table(name = "mybookratings", schema = "jlcbooksdb")
 public class BookRating {
-	@Id  
-	@Column(name="book_id")  
-	private Integer bookId; 
+	@Id
+	@Column(name = "book_id")
+	private Integer bookId;
 
-	@Column(name="avg_rating")  
-	private double avgRating; 
+	@Column(name = "avg_rating")
+	private double avgRating;
 
-	@Column(name="number_of_searches")  
+	@Column(name = "number_of_searches")
 	private int numberOfSearches;
 
-	public BookRating() {}
+	public BookRating() {
+	}
+
 	public BookRating(Integer bookId, double avgRating, int numberOfSearches) {
 		super();
 		this.bookId = bookId;
@@ -48,8 +50,6 @@ public class BookRating {
 
 	public void setNumberOfSearches(int numberOfSearches) {
 		this.numberOfSearches = numberOfSearches;
-	} 
-
-
+	}
 
 }

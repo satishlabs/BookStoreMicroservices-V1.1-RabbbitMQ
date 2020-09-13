@@ -6,16 +6,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="mybookinventory",schema = "jlcbooksdb") 
+@Table(name = "mybookinventory", schema = "jlcbooksdb")
 public class BookInventory {
-	@Id  
-	@Column(name="book_id")  
-	private Integer bookId; 
-	
-	@Column(name="books_available")  
+	@Id
+	@Column(name = "book_id")
+	private Integer bookId;
+
+	@Column(name = "books_available")
 	private int booksAvailable;
-	
-	public BookInventory() {}
+
+	public BookInventory() {
+	}
+
 	public BookInventory(Integer bookId, int booksAvailable) {
 		super();
 		this.bookId = bookId;
@@ -36,7 +38,6 @@ public class BookInventory {
 
 	public void setBooksAvailable(int booksAvailable) {
 		this.booksAvailable = booksAvailable;
-	} 
-	 
-	 
+	}
+
 }

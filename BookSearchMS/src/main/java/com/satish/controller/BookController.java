@@ -22,25 +22,25 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
-	
+
 	@GetMapping("/mybooks/{author}/{category}")
-	public List<Book> getBooks(@PathVariable String author, @PathVariable String category){
-		System.out.println(author+"\t"+category);
+	public List<Book> getBooks(@PathVariable String author, @PathVariable String category) {
+		System.out.println(author + "\t" + category);
 		return bookService.getBooks(author, category);
 	}
-	
+
 	@GetMapping("/mybook/{bookId}")
 	public BookInfo getBookById(@PathVariable Integer bookId) {
 		System.out.println("--BookController--- getBookById()---");
 		return bookService.getBookInfo(bookId);
 	}
-	
+
 	@PutMapping("/updateBookRating")
 	public void updateBookRating(@RequestBody BookRating bookRating) {
 		System.out.println("---BookController ----updateBookRating---");
 		bookService.updateBookRating(bookRating);
 	}
-	
+
 	@PutMapping("/updateBookInventory")
 	public void updateBookInventory(@RequestBody BookInventory bookInventory) {
 		System.out.println("---BookController ----updateBookInventory---");

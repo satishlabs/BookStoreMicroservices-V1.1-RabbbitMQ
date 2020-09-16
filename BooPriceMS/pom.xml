@@ -9,8 +9,8 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.satish</groupId>
-	<artifactId>BooPriceMS</artifactId>
+	<groupId>com.bookprice</groupId>
+	<artifactId>BookPriceMS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>MyBooPriceMS</name>
 	<description>SpringBoot Microservices on Server side</description>

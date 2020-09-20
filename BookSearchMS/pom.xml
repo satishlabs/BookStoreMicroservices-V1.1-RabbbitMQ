@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.booksearch</groupId>
 	<artifactId>BookSearchMS</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>MyBookSearchMS</name>
 	<description>SpringBoot Microservices on Server side</description>
 

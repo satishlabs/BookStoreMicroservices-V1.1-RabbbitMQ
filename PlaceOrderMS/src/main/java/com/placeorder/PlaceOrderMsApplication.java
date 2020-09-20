@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PlaceOrderMsApplication implements CommandLineRunner{
+public class PlaceOrderMsApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		System.out.println(" PlaceOrderMS - Begin ");

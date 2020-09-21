@@ -1,0 +1,11 @@
+com\bookstoreweb\controller\BookStoreController.class
+com\bookstoreweb\dto\OrderInfo.class
+com\bookstoreweb\dto\BookInfo.class
+com\bookstoreweb\dto\Order.class
+com\bookstoreweb\dto\Book.class
+com\bookstoreweb\service\BookStoreServiceImpl.class
+com\bookstoreweb\service\BookStoreService.class
+com\bookstoreweb\dto\UserRating.class
+com\bookstoreweb\BookStoreWebApplication.class
+com\bookstoreweb\dto\OrderItem.class
+com\bookstoreweb\config\BookStoreWebConfig.class

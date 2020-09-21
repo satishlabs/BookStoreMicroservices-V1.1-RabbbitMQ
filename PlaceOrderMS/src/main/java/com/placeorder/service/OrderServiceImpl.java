@@ -38,9 +38,9 @@ public class OrderServiceImpl implements OrderService{
 		myorder = orderDAO.save(myorder);
 		int orderId = myorder.getOrderId();
 
-
 		// Task2: Insert OrderItems  - N** need to improve this
 		List<OrderItem> itemList = orderInfo.getItemList();
+		System.out.println("%%%%%%%%%%%%%%%%%%%%% + *********** "+itemList);
 		for(OrderItem myOrderItem: itemList) {
 			myOrderItem.setOrderId(orderId);
 			orderItemDAO.save(myOrderItem);

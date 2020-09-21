@@ -32,7 +32,8 @@ public class BookStoreServiceImpl implements BookStoreService {
 		authorsList.add("All Authors"); 
 		authorsList.add("Srinivas"); 
 		authorsList.add("Vas"); 
-		authorsList.add("Sri"); 
+		authorsList.add("Sri");
+		authorsList.add("Satish"); 
 		return authorsList; 
 	} 
 
@@ -115,7 +116,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 		String orderDate = formatter.format(today);
 		System.out.println(orderDate);
 
-		Order order=new Order(orderDate,"U-111",totalQuantity,totalPrice,"New"); 
+		Order order=new Order(orderDate,"U-11",totalQuantity,totalPrice,"New"); 
 
 		OrderInfo orderInfo=new OrderInfo(); 
 		orderInfo.setOrder(order);
@@ -132,7 +133,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 	@Override
 	public void addUserRating(UserRating userRating) {
 		// Invoke UserRating MS
-		String ratingEndpoint="http://localhost:6000/addUserRating"; 
+		String ratingEndpoint="http://localhost:6500/addUserRating"; 
 		RestTemplate ratingRest = new RestTemplate();
 
 		ratingRest.put(ratingEndpoint, userRating);
@@ -143,7 +144,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 	@Override
 	public List<UserRating> getMyRatings(String userId) {
 		List<UserRating> ratingList = new ArrayList<UserRating>();
-		String ratingEndpoint="http://localhost:6000/userRatings/"+userId; 
+		String ratingEndpoint="http://localhost:6500/userRatings/"+userId; 
 		RestTemplate ratingRest = new RestTemplate();
 
 		List<Map> mymap = ratingRest.getForObject(ratingEndpoint, List.class); 

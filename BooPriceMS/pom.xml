@@ -12,7 +12,7 @@
 	<groupId>com.bookprice</groupId>
 	<artifactId>BookPriceMS</artifactId>
 	<version>1.1</version>
-	<name>MyBooPriceMS</name>
+	<name>MyBookPriceMS</name>
 	<description>SpringBoot Microservices on Server side</description>
 
 	<properties>
@@ -55,9 +55,8 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-
 	<build>
-	<finalName>MyBooPriceMS</finalName> 
+	<finalName>MyBookPriceMS</finalName> 
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

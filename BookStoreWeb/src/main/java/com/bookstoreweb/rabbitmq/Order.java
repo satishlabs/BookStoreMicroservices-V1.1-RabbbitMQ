@@ -1,6 +1,8 @@
-package com.bookstoreweb.dto;
+package com.bookstoreweb.rabbitmq;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable{
 	private Integer orderId;  
 	private String orderDate;  
 	private String userId;  

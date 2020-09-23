@@ -28,6 +28,10 @@ public class OrderInfo {
 	public void setItemList(List<OrderItem> itemList) {
 		this.itemList = itemList;
 	}
+	@Override
+	public String toString() {
+		return "OrderInfo [order=" + order + ", itemList=" + itemList + "]";
+	}
 	
 	
 	

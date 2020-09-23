@@ -90,7 +90,5 @@ public class BookInfo {
 	public void setNumberOfSearches(int numberOfSearches) {
 		this.numberOfSearches = numberOfSearches;
 	}  
-	
-	
-	 
+		 
 }

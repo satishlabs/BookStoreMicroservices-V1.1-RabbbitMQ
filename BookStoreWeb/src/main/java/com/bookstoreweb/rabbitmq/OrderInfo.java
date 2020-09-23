@@ -1,8 +1,9 @@
-package com.bookstoreweb.dto;
+package com.bookstoreweb.rabbitmq;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class OrderInfo {
+public class OrderInfo implements Serializable{
 	private Order order; 
 	private List<OrderItem> itemsList;
 	

@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.booksearch</groupId>
 	<artifactId>BookSearchMS</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 	<name>MyBookSearchMS</name>
 	<description>SpringBoot Microservices on Server side</description>
 
@@ -40,6 +40,11 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
@@ -57,7 +62,7 @@
 	</dependencies>
 
 	<build>
-	<finalName>MyBookSearchMS</finalName> 
+		<finalName>MyBookSearchMS</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

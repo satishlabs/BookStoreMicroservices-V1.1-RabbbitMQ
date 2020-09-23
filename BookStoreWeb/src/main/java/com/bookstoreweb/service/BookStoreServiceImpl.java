@@ -15,10 +15,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.bookstoreweb.dto.Book;
 import com.bookstoreweb.dto.BookInfo;
-import com.bookstoreweb.dto.Order;
-import com.bookstoreweb.dto.OrderInfo;
-import com.bookstoreweb.dto.OrderItem;
 import com.bookstoreweb.dto.UserRating;
+import com.bookstoreweb.rabbitmq.Order;
+import com.bookstoreweb.rabbitmq.OrderInfo;
+import com.bookstoreweb.rabbitmq.OrderItem;
 
 @Service
 public class BookStoreServiceImpl implements BookStoreService {
@@ -37,7 +37,6 @@ public class BookStoreServiceImpl implements BookStoreService {
 		return authorsList; 
 	} 
 
-
 	public List<String> getCategoryList(){ 
 		List<String> catList=new ArrayList<>();
 		catList.add("All Categories"); 
@@ -45,7 +44,6 @@ public class BookStoreServiceImpl implements BookStoreService {
 		catList.add("Spring"); 
 		return catList; 
 	}
-
 
 	@Override
 	public List<Book> getMyBooks(String author, String category){ 
@@ -99,7 +97,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 
 		for(Book mybook:mycartMap.values()) { 
 			Integer bookId=mybook.getBookId(); 
-
+			
 			// Invoke BookPrice Controller
 			RestTemplate bookPriceRest=new RestTemplate(); 
 			String priceEndpoint="http://localhost:9000/offeredPrice/"+bookId; 
@@ -116,7 +114,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 		String orderDate = formatter.format(today);
 		System.out.println(orderDate);
 
-		Order order=new Order(orderDate,"U-11",totalQuantity,totalPrice,"New"); 
+		Order order=new Order(orderDate,"U-13",totalQuantity,totalPrice,"New"); 
 
 		OrderInfo orderInfo=new OrderInfo(); 
 		orderInfo.setOrder(order);
@@ -135,7 +133,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 		// Invoke UserRating MS
 		String ratingEndpoint="http://localhost:6500/addUserRating"; 
 		RestTemplate ratingRest = new RestTemplate();
-
+		
 		ratingRest.put(ratingEndpoint, userRating);
 		System.out.println("Rating Added...");
 

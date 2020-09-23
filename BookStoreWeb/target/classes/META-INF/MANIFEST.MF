@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: Hell
+Build-Jdk: 11.0.6
+Implementation-Title: MyBookStoreWeb
+Implementation-Version: 1.0
+Implementation-Vendor-Id: com.bookstoreweb
+Implementation-URL: https://spring.io/projects/spring-boot/BookStoreWeb
+Created-By: Maven Integration for Eclipse
+

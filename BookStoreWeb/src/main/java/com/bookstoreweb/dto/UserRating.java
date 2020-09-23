@@ -51,6 +51,11 @@ public class UserRating {
 	}
 	public void setReview(String review) {
 		this.review = review;
+	}
+	@Override
+	public String toString() {
+		return "UserRating [ratingId=" + ratingId + ", userId=" + userId + ", bookId=" + bookId + ", rating=" + rating
+				+ ", review=" + review + "]";
 	} 
 	
 	

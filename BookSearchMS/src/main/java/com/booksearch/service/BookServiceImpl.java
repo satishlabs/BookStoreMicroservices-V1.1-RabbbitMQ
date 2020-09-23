@@ -3,11 +3,13 @@ package com.booksearch.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import com.booksearch.config.BookSearchConfig;
 import com.booksearch.dao.BookDAO;
 import com.booksearch.dao.BookInventoryDAO;
 import com.booksearch.dao.BookRatingDAO;
@@ -16,6 +18,8 @@ import com.booksearch.dto.BookPriceInfo;
 import com.booksearch.entity.Book;
 import com.booksearch.entity.BookInventory;
 import com.booksearch.entity.BookRating;
+import com.booksearch.rabbitmq.BookInventoryInfo;
+import com.booksearch.rabbitmq.BookRatingInfo;
 
 @Service
 @Transactional
@@ -77,13 +81,22 @@ public class BookServiceImpl implements BookService {
 		return bookInfo;
 	}
 
-	@Override
-	public void updateBookRating(BookRating bookRating) {
+	@RabbitListener(queues = BookSearchConfig.RATINGS_QUEUE) 
+	public void updateBookRating(BookRatingInfo bookRatingInfo) {	
+		System.out.println("updateBookRating");
+		BookRating bookRating = new BookRating();
+		bookRating.setBookId(bookRatingInfo.getBookId());
+		bookRating.setAvgRating(bookRatingInfo.getAvgRating());
+		bookRating.setNumberOfSearches(bookRatingInfo.getNumberOfSearches());
 		bookRatingDAO.save(bookRating);
 	}
 
-	@Override
-	public void updateBookInventory(BookInventory bookInventory) {
+	@RabbitListener(queues = BookSearchConfig.INVENTORY_QUEUE) 
+	public void updateBookInventory(BookInventoryInfo bookInventoryInfo) {
+		System.out.println("updateBookInventory");
+		BookInventory bookInventory = new BookInventory();
+		bookInventory.setBookId(bookInventoryInfo.getBookId());
+		bookInventory.setBooksAvailable(bookInventoryInfo.getBooksAvailable());
 		bookInventoryDAO.save(bookInventory);
 	}
 

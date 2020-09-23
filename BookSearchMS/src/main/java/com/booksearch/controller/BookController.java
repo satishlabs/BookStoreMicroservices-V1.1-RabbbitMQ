@@ -35,15 +35,4 @@ public class BookController {
 		return bookService.getBookInfo(bookId);
 	}
 
-	@PutMapping("/updateBookRating")
-	public void updateBookRating(@RequestBody BookRating bookRating) {
-		System.out.println("---BookController ----updateBookRating---");
-		bookService.updateBookRating(bookRating);
-	}
-
-	@PutMapping("/updateBookInventory")
-	public void updateBookInventory(@RequestBody BookInventory bookInventory) {
-		System.out.println("---BookController ----updateBookInventory---");
-		bookService.updateBookInventory(bookInventory);
-	}
 }

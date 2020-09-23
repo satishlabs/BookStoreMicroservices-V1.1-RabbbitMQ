@@ -2,14 +2,16 @@ package com.userratings.service;
 
 import java.util.List;
 
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import com.userratings.config.UserRatingsConfig;
 import com.userratings.dao.BookRatingDAO;
 import com.userratings.dao.UserRatingDAO;
 import com.userratings.entity.BookRating;
 import com.userratings.entity.UserRating;
+import com.userratings.rabbitmq.BookRatingInfo;
 
 @Service
 public class RatingServiceImpl implements RatingService{
@@ -19,6 +21,9 @@ public class RatingServiceImpl implements RatingService{
 	
 	@Autowired
 	private UserRatingDAO userRatingDAO;
+	
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 	
 	@Override
 	public void addUserRating(UserRating userRating) {
@@ -43,9 +48,17 @@ public class RatingServiceImpl implements RatingService{
 		
 		//4. Update BookRating in BookSearchMS
 		//Invoking BookRating-MS
-		RestTemplate bookSearchRest = new RestTemplate();
-		String endpoint = "http://localhost:8000/updateBookRating";
-		bookSearchRest.put(endpoint, bookSearchRest);
+		
+		//Send message to RabbitMQ
+		//RestTemplate bookSearchRest = new RestTemplate();
+		//String endpoint = "http://localhost:8000/updateBookRating";
+		//bookSearchRest.put(endpoint, bookSearchRest);
+		BookRatingInfo bookRatingInfo = new BookRatingInfo();
+		bookRatingInfo.setBookId(bookRating.getBookId());
+		bookRatingInfo.setAvgRating(bookRating.getAvgRating());
+		bookRatingInfo.setNumberOfSearches(bookRating.getNumberOfSearches());
+		
+		rabbitTemplate.convertAndSend(UserRatingsConfig.RATINGS_QUEUE, bookRatingInfo);
 	}
 
 	@Override

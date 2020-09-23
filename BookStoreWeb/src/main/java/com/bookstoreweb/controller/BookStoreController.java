@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bookstoreweb.dto.Book;
@@ -41,7 +42,6 @@ public class BookStoreController {
 		List<String> catList = bookStoreService.getCategoryList();
 		session.setAttribute("MyAuthorList", authorsList);
 		session.setAttribute("MyCatList", catList);
-		System.out.println("Hello@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		return "redirect:/showAllBooks";
 	}
 
@@ -50,7 +50,7 @@ public class BookStoreController {
 		System.out.println("-------BookStoreController--showBooksList()---------");
 		String author=request.getParameter("author"); 
 		String category=request.getParameter("category"); 
-		System.out.println("Authorsss222"+author);
+		System.out.println(author);
 		System.out.println(category);
 
 		Collection<Book> blist=bookStoreService.getMyBooks(author,category); 
@@ -131,7 +131,7 @@ public class BookStoreController {
 		System.out.println("-------BookStoreController--showRatingsForm()---------");
 
 		UserRating userRating = new UserRating();
-		userRating.setUserId("U-12");
+		userRating.setUserId("U-13");
 
 		model.addAttribute("myUserRating", userRating);
 
@@ -141,9 +141,7 @@ public class BookStoreController {
 	@PostMapping("/addMyRating")
 	public String addMyRating(@ModelAttribute("") UserRating userRating) {
 		System.out.println("-------BookStoreController--addMyRating()---------");
-		
 		bookStoreService.addUserRating(userRating); 
-		 
 		return "ratingSuccess"; 
 	}
 	
@@ -151,7 +149,7 @@ public class BookStoreController {
 	public String showMyRatingsList(Model model,HttpSession session) { 
 		System.out.println("-------BookStoreController--showMyRatingsList()---------"); 
 		
-		List<UserRating> userRatingList=bookStoreService.getMyRatings("U-12"); 
+		List<UserRating> userRatingList=bookStoreService.getMyRatings("U-13"); 
 		 
 		session.setAttribute("MyUserRatingList", userRatingList); 
 		 

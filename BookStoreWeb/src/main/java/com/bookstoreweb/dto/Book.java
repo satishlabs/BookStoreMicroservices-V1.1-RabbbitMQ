@@ -50,12 +50,5 @@
 		}
 		public void setCategory(String category) {
 			this.category = category;
-		}
-		@Override
-		public String toString() {
-			return "Book [bookId=" + bookId + ", bookName=" + bookName + ", author=" + author + ", publications="
-					+ publications + ", category=" + category + "]";
-		} 
-		
-		
+		}	
 	}

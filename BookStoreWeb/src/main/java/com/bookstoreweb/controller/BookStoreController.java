@@ -117,7 +117,7 @@ public class BookStoreController {
 
 	@GetMapping("/placeOrder")
 	public String placeMyOrder(HttpSession session) {
-		System.out.println("-------BookStoreController--placeMyOrder()---------");
+		System.out.println("-------1. BookStoreController--placeMyOrder()---------");
 
 		if (mycartMap.size() > 0) {
 			bookStoreService.placeOrder(mycartMap);
@@ -140,7 +140,7 @@ public class BookStoreController {
 
 	@PostMapping("/addMyRating")
 	public String addMyRating(@ModelAttribute("") UserRating userRating) {
-		System.out.println("-------BookStoreController--addMyRating()---------");
+		System.out.println("-------1. BookStoreController--addMyRating()---------");
 		bookStoreService.addUserRating(userRating); 
 		return "ratingSuccess"; 
 	}

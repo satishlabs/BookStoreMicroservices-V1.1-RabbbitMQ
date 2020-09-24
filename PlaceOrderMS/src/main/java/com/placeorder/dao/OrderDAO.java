@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.placeorder.entity.Order;
+import com.placeorder.entity.MyOrder;
 
-public interface OrderDAO extends JpaRepository<Order, Integer>{
+public interface OrderDAO extends JpaRepository<MyOrder, Integer>{
 
-	List<Order> getOrdersByUserId(String userId);
+	List<MyOrder> getOrdersByUserId(String userId);
 
 }

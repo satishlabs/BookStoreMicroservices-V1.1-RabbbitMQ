@@ -10,20 +10,26 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.bookstoreweb.config.BookStoreWebConfig;
 import com.bookstoreweb.dto.Book;
 import com.bookstoreweb.dto.BookInfo;
 import com.bookstoreweb.dto.UserRating;
 import com.bookstoreweb.rabbitmq.Order;
 import com.bookstoreweb.rabbitmq.OrderInfo;
 import com.bookstoreweb.rabbitmq.OrderItem;
+import com.bookstoreweb.rabbitmq.UserRatingInfo;
 
 @Service
 public class BookStoreServiceImpl implements BookStoreService {
 	static Logger log = LoggerFactory.getLogger(BookStoreServiceImpl.class);
 
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
 	
 	Map<Integer,Book> booksMap=new LinkedHashMap<>();
 			
@@ -91,6 +97,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 
 	@Override
 	public void placeOrder(Map<Integer, Book> mycartMap) {
+		System.out.println("-------2. BookStoreServiceImpl--placeMyOrder()---------");
 		List<OrderItem> itemList=new ArrayList<>(); 
 		double totalPrice=0.0; 
 		int totalQuantity=0; 
@@ -121,20 +128,26 @@ public class BookStoreServiceImpl implements BookStoreService {
 		orderInfo.setItemsList(itemList);
 
 		// Invoke PlaceOrder MS
-		String orderEndpoint="http://localhost:7000/placeOrder"; 
-		RestTemplate orderRest = new RestTemplate();
+		//String orderEndpoint="http://localhost:7000/placeOrder"; 
+		//RestTemplate orderRest = new RestTemplate();
 
-		orderRest.put(orderEndpoint, orderInfo);
+		//orderRest.put(orderEndpoint, orderInfo);
+		
+		//Send Order Message to RabbitMQ 
+		rabbitTemplate.convertAndSend(BookStoreWebConfig.ORDER_QUEUE, orderInfo);
 		System.out.println("Order Placed...");
 	}
 
 	@Override
 	public void addUserRating(UserRating userRating) {
+		System.out.println("-------2. BookStoreServiceImpl--addUserRating()---------");
 		// Invoke UserRating MS
-		String ratingEndpoint="http://localhost:6500/addUserRating"; 
-		RestTemplate ratingRest = new RestTemplate();
+		//String ratingEndpoint="http://localhost:6500/addUserRating"; 
+		//RestTemplate ratingRest = new RestTemplate();
+		//ratingRest.put(ratingEndpoint, userRating);
 		
-		ratingRest.put(ratingEndpoint, userRating);
+		UserRatingInfo userRatingInfo = new UserRatingInfo(userRating.getUserId(),userRating.getBookId(),userRating.getRating(),userRating.getReview());
+		rabbitTemplate.convertAndSend(BookStoreWebConfig.USER_RATING_QUEUE, userRatingInfo);
 		System.out.println("Rating Added...");
 
 	}

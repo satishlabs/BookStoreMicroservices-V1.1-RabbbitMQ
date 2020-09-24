@@ -83,7 +83,7 @@ public class BookServiceImpl implements BookService {
 
 	@RabbitListener(queues = BookSearchConfig.RATINGS_QUEUE) 
 	public void updateBookRating(BookRatingInfo bookRatingInfo) {	
-		System.out.println("updateBookRating");
+		System.out.println("-- 4. BookServiceImpl -- updateBookRating");
 		BookRating bookRating = new BookRating();
 		bookRating.setBookId(bookRatingInfo.getBookId());
 		bookRating.setAvgRating(bookRatingInfo.getAvgRating());
@@ -93,7 +93,7 @@ public class BookServiceImpl implements BookService {
 
 	@RabbitListener(queues = BookSearchConfig.INVENTORY_QUEUE) 
 	public void updateBookInventory(BookInventoryInfo bookInventoryInfo) {
-		System.out.println("updateBookInventory");
+		System.out.println("-- 4. BookServiceImpl -- updateBookInventory");
 		BookInventory bookInventory = new BookInventory();
 		bookInventory.setBookId(bookInventoryInfo.getBookId());
 		bookInventory.setBooksAvailable(bookInventoryInfo.getBooksAvailable());

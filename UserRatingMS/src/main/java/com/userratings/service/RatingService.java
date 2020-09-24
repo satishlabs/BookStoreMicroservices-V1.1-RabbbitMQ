@@ -6,7 +6,7 @@ import com.userratings.entity.BookRating;
 import com.userratings.entity.UserRating;
 
 public interface RatingService {
-	public void addUserRating(UserRating userRating);
+	//public void addUserRating(UserRating userRating);
 	public List<UserRating> getUserRatingByUserId(String userId);
 	public void updateBookRating(BookRating bookRating);
 	public BookRating getBookRatingByBookId(Integer bookId);

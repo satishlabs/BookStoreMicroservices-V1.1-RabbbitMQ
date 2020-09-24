@@ -23,13 +23,13 @@ public class RatingController {
 	
 	@Autowired
 	private RatingService ratingService;
-	
+	/*
 	@PutMapping("/addUserRating")
 	public void addUserRating(@RequestBody UserRating userRating) {
 		log.info("---RatingController---addUserRating()-----"); 
 		ratingService.addUserRating(userRating);
 	}
-	
+	*/
 	@GetMapping("/userRatings/{userId}")
 	public List<UserRating> getUserRatingByUserId(@PathVariable String userId){
 		log.info("---RatingController---getUserRatingByUserId()-----"); 

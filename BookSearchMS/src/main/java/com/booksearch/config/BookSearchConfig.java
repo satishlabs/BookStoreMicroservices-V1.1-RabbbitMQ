@@ -11,12 +11,18 @@ import org.springframework.amqp.core.TopicExchange;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
+/*
+ BookSearchMS Receives message from PlaceOrderMS via Rabbit MQ Asynchronously
+BookSearchMS Receives message from UserRatingMS via Rabbit MQ Asynchronously
+So we need to use Rabbit MQ in BookSearchMS. 
+ * */
 @SpringBootApplication
 public class BookSearchConfig implements WebMvcConfigurer{
+	//BookSearchMS Receives message from UserRatingMS via Rabbit MQ Asynchronously
 	public static final String RATINGS_QUEUE= "MyRatings-Queue"; 
 	public static final String RATINGS_EXCHANGE = "MyRatings-Exchange";
 	
+	//BookSearchMS Receives message from PlaceOrderMS via Rabbit MQ Asynchronously 
 	public static final String INVENTORY_QUEUE= "MyInventory-Queue"; 
 	public static final String INVENTORY_EXCHANGE = "MyInventory-Exchange";
 	
